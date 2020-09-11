@@ -14,6 +14,13 @@ import implementacion.estatica.DiccionarioSimple;
 
 public class FinalUtil {
 
+	//final mazzitelli
+	/*
+	 * a.	Ordenar los valores de una cola dada. Sólo se podrán usar los siguientes TDA auxiliares: 
+	 * colas, pilas, conjuntos y/o diccionarios. No se podrán usar arreglos ni
+	 *  listas auxiliares. El método no debe superar un costo temporal cuadrático.
+	 * 
+	 */
 	public void ordenarCola(ColaTDA cola, ColaTDA cola2, ColaTDA aux) {
 		int menor,valorCola;
 		while(!cola.colaVacia()) {
@@ -71,7 +78,47 @@ public class FinalUtil {
 		while(!aux.colaVacia()) {
 			System.out.println(aux.tope());
 			aux.desacolar();
+		}
 	}
+
+	/*
+	 * 
+	 * EJ DOS 
+	 * b.	Dado un árbol ABB, devuelva en una cola todos los valores que tengan asociados 
+	 * la magnitud del factor de equilibro ordenados en forma ascendente.
+	 */
+	
+		public void obtenerFactorEquilibrio(AbbTDA arbol,ColaPrioridadTDA cola) {
+			if(!arbol.arbolVacio()) {
+				int dif = obtenerDiferencia(arbol);
+				cola.acolarPrioridad(dif, dif);
+				obtenerFactorEquilibrio(arbol.hijoDer(),cola);
+				obtenerFactorEquilibrio(arbol.hijoizq(),cola);
+			}
+		}
+	
+		public int altura(AbbTDA a){
+			if(a.arbolVacio()){
+				return 0;
+			}else{
+				int alturaDer = altura(a.hijoDer());
+				int alturaIzq = altura(a.hijoizq());
+				if(alturaDer> alturaIzq){
+					return alturaDer +1;
+				}else{
+					return alturaIzq +1;
+				}
+			}
+		}
+		
+	
+		private int obtenerDiferencia(AbbTDA arbol) {
+			return altura(arbol.hijoizq()) - altura(arbol.hijoDer());
+		}
+		
+	private int diferenciasArbol(AbbTDA arbol) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 	public void juntarDiccionarios(DiccionarioSimpleTDA dicSimple, DiccionarioSimpleTDA dicSimple2) {
@@ -191,6 +238,7 @@ del hijo derecho del valor del nodo en el arbol.
 		return null;
 	}
 
+	//aca tiene que ser distinto
 	private int obtenerDiferenciaHijosArbol(AbbTDA arbol) {
 		if(!arbol.arbolVacio()) {
 			int valorIzq =  arbol.raiz()+ obtenerDiferenciaHijosArbol(arbol.hijoizq());
@@ -300,6 +348,33 @@ del hijo derecho del valor del nodo en el arbol.
 			}
 		}
 		return false;
+	}
+
+	
+	//MATRIZ DE ADYACENCIA INDEPENDITES GODIO FINAL 
+	
+	public boolean punto5(int[][] matrizAdyacencia, ConjuntoTDA c) {
+		ConjuntoTDA aux = c; //cuando itero lo hago nuevo
+		ConjuntoTDA aux2 = c; //el que recorro posta
+		
+		int x,y;
+		
+		while(!aux2.conjuntoVacio()) {
+			
+			x = aux2.elegir();
+			aux2.sacar(x);
+			aux.sacar(x);
+			
+			while(!aux.conjuntoVacio()) {
+				y = aux.elegir();
+				aux.sacar(y);
+				if(matrizAdyacencia[x][y] == 1) return false;
+			}
+			
+			aux = c;
+		}
+		return true;
+		
 	}
 }
 

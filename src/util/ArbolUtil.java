@@ -522,6 +522,30 @@ Visite la raíz
 		}
 	}
 	
+	/*
+	 * 	public void agregarpreorden(ArbolABBTDA B, ArbolABBTDA A) {
+		
+        if (!A.arbolVacio()) {
+            B.agregarElem(A.raiz());
+            agregarpreorden(B, A.hijoIzq());            
+            agregarpreorden(B, A.hijoDer());
+        }
+    }
+	 *
+	 * 
+	 * public void rotar(ArbolABBTDA B, ArbolABBTDA A) {
+			B.agregarElem(A.raiz()); //30
+			B.agregarElem(A.hijoDer().hijoIzq().raiz()); //35
+			B.agregarElem(A.hijoDer().raiz()); //40
+			this.agregarpreorden(B,A.hijoIzq()); //SAi30
+			this.agregarpreorden(B,A.hijoDer().hijoIzq().hijoIzq()); //SAi35
+			this.agregarpreorden(B,A.hijoDer().hijoIzq().hijoDer()); //SAD35
+			this.agregarpreorden(B,A.hijoDer().hijoDer()); //SAd40
+		}
+	 * 
+	 * 
+	 * 
+	 */
 
 }
 	
